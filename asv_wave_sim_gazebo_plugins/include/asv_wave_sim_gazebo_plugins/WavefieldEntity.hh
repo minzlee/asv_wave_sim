@@ -31,6 +31,7 @@ namespace asv
 // WavefieldEntity
 
   class Wavefield;
+  class WaveParameters;
 
   /// \internal
   /// \brief Class to hold private data for WavefieldEntity.

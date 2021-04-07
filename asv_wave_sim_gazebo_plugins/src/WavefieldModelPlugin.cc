@@ -337,4 +337,37 @@ namespace asv
     ignNode.Request(topicName, wavefieldMsg);
   }
 
+  std::shared_ptr<const WaveParameters> WavefieldModelPlugin::GetWaveParams(
+    gazebo::physics::WorldPtr _world,
+    const std::string& _waveModelName)
+  {
+    GZ_ASSERT(_world != nullptr, "World is null");
+    #if GAZEBO_MAJOR_VERSION >= 8
+      physics::ModelPtr wavefieldModel = _world->ModelByName(_waveModelName);
+    #else
+      physics::ModelPtr wavefieldModel = _world->GetModel(_waveModelName);
+    #endif
+    if (wavefieldModel == nullptr)
+    {
+      gzerr << "No Wavefield Model found with name '"
+            << _waveModelName << "'." << std::endl;
+      return nullptr;
+    }
+
+    std::string wavefieldEntityName(WavefieldEntity::MakeName(_waveModelName));
+
+    physics::BasePtr base = wavefieldModel->GetChild(wavefieldEntityName);
+    boost::shared_ptr<WavefieldEntity> wavefieldEntity
+      = boost::dynamic_pointer_cast<WavefieldEntity>(base);
+    if (wavefieldEntity == nullptr)
+    {
+      gzerr << "Wavefield Entity is null: "
+            << wavefieldEntityName << std::endl;
+      return nullptr;
+    }
+    // BSB - appears this method is not a part of the feature/vrx branch?
+    // GZ_ASSERT(wavefieldEntity->GetWavefield() != nullptr, 
+    //           "Wavefield is null.");
+    return wavefieldEntity->GetWavefield()->GetParameters();
+  }
 } // namespace gazebo

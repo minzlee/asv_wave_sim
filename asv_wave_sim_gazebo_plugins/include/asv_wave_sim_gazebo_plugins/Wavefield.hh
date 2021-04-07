@@ -320,6 +320,11 @@ namespace asv
       const Point3& _point,
       double time);
 
+    public: static double ComputeDepthSimply(
+            const WaveParameters& _waveParams,
+      const ignition::math::Vector3d& _point,
+            double time, double time_init = 0);
+            
     /// \internal
     /// \brief Pointer to the class private data.
     private: std::shared_ptr<WavefieldSamplerPrivate> data;

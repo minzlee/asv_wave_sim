@@ -1019,6 +1019,30 @@ namespace asv
     return h;
   }
 
+  double WavefieldSampler::ComputeDepthSimply(
+    const WaveParameters& _waveParams,
+    const ignition::math::Vector3d& _point,
+    double time,
+    double time_init /*=0*/
+  )
+  {
+    double h = 0.0;
+    for (std::size_t ii = 0; ii < _waveParams.Number(); ++ii)
+    {
+      double k = _waveParams.Wavenumber_V()[ii];
+      double a = _waveParams.Amplitude_V()[ii];
+      double dx =  ToIgn(_waveParams.Direction_V()[ii]).X();
+      double dy =  ToIgn(_waveParams.Direction_V()[ii]).Y();
+      double dot = _point.X()*dx + _point.Y()*dy;
+      double omega = _waveParams.AngularFrequency_V()[ii];
+      double theta = k*dot - omega*time;
+      double c = cos(theta);
+      h += a*c;
+    }
+
+    // Exponentially grow the waves
+    return h*(1-exp(-1.0*(time-time_init)));
+  }
 ///////////////////////////////////////////////////////////////////////////////
 
 } // namespace asv

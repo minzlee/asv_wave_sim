@@ -28,7 +28,8 @@
 
 namespace asv
 {
-  
+  class Wavefield;
+  class WaveParameters;
 ///////////////////////////////////////////////////////////////////////////////
 // WavefieldModelPlugin
 
@@ -162,6 +163,10 @@ namespace asv
     private: void FiniMarker();
     private: void ResetMarker();
     private: void UpdateMarker();
+
+    public: static std::shared_ptr<const WaveParameters> GetWaveParams(
+      gazebo::physics::WorldPtr _world,
+      const std::string& _waveModelName);
 
     /// \internal
     /// \brief Pointer to the class private data.
