@@ -1,0 +1,73 @@
+Original things:
+./devel/lib/asv_wave_sim_gazebo_plugins/WaveMsgPublisher \
+  --number 3 \
+  --amplitude 1 \
+  --period 7 \
+  --direction 1 1 \
+  --scale 2 \
+  --angle 1 \
+  --steepness 1
+
+wave1
+./devel/lib/asv_wave_sim_gazebo_plugins/WaveMsgPublisher \
+  --number 3 \
+  --amplitude 1 \
+  --period 7 \
+  --direction 1 0 \
+  --scale 2 \
+  --angle 0 \
+  --steepness 1
+
+boat1
+x,y,Y = 0,0,0
+cmd_vel.linear.x = 2.0
+
+wave2
+./devel/lib/asv_wave_sim_gazebo_plugins/WaveMsgPublisher \
+  --number 3 \
+  --amplitude 1 \
+  --period 7 \
+  --direction 0 1 \
+  --scale 2 \
+  --angle 0 \
+  --steepness 1
+
+wave3
+./devel/lib/asv_wave_sim_gazebo_plugins/WaveMsgPublisher \
+  --number 3 \
+  --amplitude 1 \
+  --period 7 \
+  --direction 1 1 \
+  --scale 2 \
+  --angle 0 \
+  --steepness 1
+
+wave4
+./devel/lib/asv_wave_sim_gazebo_plugins/WaveMsgPublisher \
+  --number 3 \
+  --amplitude 1 \
+  --period 7 \
+  --direction -1 0 \
+  --scale 2 \
+  --angle 0 \
+  --steepness 1
+
+wave5
+./devel/lib/asv_wave_sim_gazebo_plugins/WaveMsgPublisher \
+  --number 3 \
+  --amplitude 1 \
+  --period 7 \
+  --direction 0 -1 \
+  --scale 2 \
+  --angle 0 \
+  --steepness 1
+
+wave6
+./devel/lib/asv_wave_sim_gazebo_plugins/WaveMsgPublisher \
+  --number 3 \
+  --amplitude 1 \
+  --period 7 \
+  --direction 1 -1 \
+  --scale 2 \
+  --angle 0 \
+  --steepness 1

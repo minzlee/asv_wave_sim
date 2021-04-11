@@ -17,6 +17,7 @@ class Node():
         self.keyboard = keyboard
 
     def callback(self,data):
+        # data.linear.x = 2.0
         rospy.logdebug("RX: Twist "+rospy.get_caller_id())
         rospy.logdebug("\tlinear:")
         rospy.logdebug("\t\tx:%f,y:%f,z:%f"%(data.linear.x,
